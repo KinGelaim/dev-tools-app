@@ -16,11 +16,12 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     private NavigationItem? _selectedTool;
 
-    public ObservableCollection<NavigationItem> Tools { get; } = new();
+    public ObservableCollection<NavigationItem> Tools { get; } = [];
 
     public MainViewModel()
     {
         Tools.Add(new NavigationItem("Base64 Converter", new Base64ViewModel()));
+        Tools.Add(new NavigationItem("UUID / GUID Generator", new GuidGeneratorViewModel()));
 
         SelectedTool = Tools[0];
     }

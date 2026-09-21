@@ -1,0 +1,122 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:DevToolsApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="DevToolsApp.Views.GuidGeneratorView"
+             x:DataType="vm:GuidGeneratorViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="16" RowDefinitions="Auto,Auto,*" MaxWidth="800" HorizontalAlignment="Stretch">
+            
+            <!-- Заголовок -->
+            <TextBlock Grid.Row="0"
+                       Text="Генератор UUID / GUID"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Margin="0,0,0,16"/>
+
+            <!-- Панель настроек -->
+            <Border Grid.Row="1"
+                    Background="#252526"
+                    CornerRadius="8"
+                    Padding="16"
+                    Margin="0,0,0,16">
+                <Border.Styles>
+                    <!-- Обычное состояние -->
+                    <Style Selector="CheckBox">
+                        <Setter Property="Foreground" Value="#ffffff"/>
+                    </Style>
+    
+                    <!-- При наведении -->
+                    <Style Selector="CheckBox:pointerover /template/ ContentPresenter">
+                        <Setter Property="Foreground" Value="#f0f0f0"/>
+                    </Style>
+    
+                    <!-- Когда выбран -->
+                    <Style Selector="CheckBox:checked">
+                        <Setter Property="Foreground" Value="#ffffff"/>
+                    </Style>
+
+                    <!-- Цвет квадрата в нормальном состоянии (TODO: починить) -->
+                    <Style Selector="CheckBox /template/ Border#PART_Border">
+                      <Setter Property="BorderBrush" Value="#ffffff"/>
+                    </Style>
+
+                    <!-- Цвет квадрата при наведении -->
+                    <Style Selector="CheckBox:pointerover /template/ Border#NormalRectangle">
+                      <Setter Property="BorderBrush" Value="#ffffff" />
+                    </Style>
+
+                    <Style Selector="TextBlock.label">
+                        <Setter Property="Foreground" Value="#ffffff" />
+                    </Style>
+                </Border.Styles>
+
+                <WrapPanel Orientation="Horizontal">
+                    
+                    <!-- Дефисы -->
+                    <CheckBox IsChecked="{Binding UseHyphens}"
+                              Content="Дефисы (-)"
+                              Margin="0,0,20,10"/>
+
+                    <!-- Регистр -->
+                    <CheckBox IsChecked="{Binding IsUppercase}"
+                              Content="Верхний регистр (UPPER)"
+                              Margin="0,0,20,10"/>
+
+                    <!-- Скобки -->
+                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,20,10" VerticalAlignment="Center">
+                        <TextBlock Text="Скобки:" VerticalAlignment="Center" Classes="label"/>
+                        <ComboBox SelectedIndex="{Binding BracketFormatIndex}">
+                            <ComboBoxItem Content="Нет"/>
+                            <ComboBoxItem Content="\{...\}"/>
+                            <ComboBoxItem Content="(...)"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Количество -->
+                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,20,10" VerticalAlignment="Center">
+                        <TextBlock Text="Количество:" VerticalAlignment="Center" Classes="label"/>
+                        <NumericUpDown Value="{Binding Count}"
+                                       Minimum="1"
+                                       Maximum="1000"
+                                       FormatString="0"
+                                       Width="110"/>
+                    </StackPanel>
+                </WrapPanel>
+            </Border>
+
+            <!-- Блок с кнопками управления и результатом -->
+            <Grid Grid.Row="2" RowDefinitions="Auto,*">
+                
+                <!-- Кнопки действий -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+                    <Button Command="{Binding GenerateCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+
+                            <TextBlock Text="Сгенерировать новые" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding CopyCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+
+                            <TextBlock Text="Копировать" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <!-- Поле вывода -->
+                <TextBox Grid.Row="1"
+                         Text="{Binding Output}"
+                         IsReadOnly="True"
+                         AcceptsReturn="True"
+                         FontFamily="Cascadia Code, Consolas, Courier New, Monospace"
+                         MinHeight="250"
+                         VerticalAlignment="Stretch"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
