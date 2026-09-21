@@ -1,22 +1,46 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:DevToolsApp.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:models="using:DevToolsApp.Models"
         x:Class="DevToolsApp.Views.MainWindow"
-        x:DataType="vm:MainViewModel"
+        x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="DevToolsApp">
+        Title="DevToolsApp"
+        Width="900" Height="600"
+        WindowStartupLocation="CenterScreen">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainViewModel />
-    </Design.DataContext>
+    <!-- SplitView делит окно на боковую панель (Pane) и контентную область (Content) -->
+    <SplitView IsPaneOpen="True"
+               DisplayMode="Inline"
+               OpenPaneLength="220">
+        
+        <!-- Левая часть: Меню -->
+        <SplitView.Pane>
+            <Border BorderBrush="#33808080" BorderThickness="0,0,1,0" Background="#11808080">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" 
+                               Text="DevToolsApp" 
+                               FontWeight="Bold" 
+                               FontSize="16" 
+                               Margin="15,20,15,20"/>
+                    
+                    <ListBox ItemsSource="{Binding Tools}" 
+                             SelectedItem="{Binding SelectedItem}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:NavigationItem">
+                                <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Padding="5,0"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+        </SplitView.Pane>
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
+        <!-- Правая часть: Активный инструмент -->
+        <SplitView.Content>
+            <!-- ContentControl автоматически найдет нужный UserControl благодаря ViewLocator -->
+            <TransitioningContentControl Content="{Binding CurrentPage}" Margin="10"/>
+        </SplitView.Content>
 
+    </SplitView>
 </Window>

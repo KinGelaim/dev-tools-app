@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DevToolsApp.ViewModels"
+             x:Class="DevToolsApp.Views.Base64View"
+             x:DataType="vm:Base64ViewModel">
+
+    <Grid RowDefinitions="Auto, *, Auto, *" Margin="20">
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Base64 Encoder / Decoder" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <!-- Входной текст -->
+        <TextBox Grid.Row="1" 
+                 Text="{Binding InputText}" 
+                 PlaceholderText="Введите текст или Base64 строку..." 
+                 AcceptsReturn="True" 
+                 TextWrapping="Wrap"/>
+
+        <!-- Кнопки действий -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10" Margin="0,10">
+            <Button Content="Encode (в Base64)" Command="{Binding EncodeToBase64}"/>
+            <Button Content="Decode (из Base64)" Command="{Binding DecodeFromBase64}"/>
+        </StackPanel>
+
+        <!-- Результат -->
+        <TextBox Grid.Row="3" 
+                 Text="{Binding OutputText}" 
+                 IsReadOnly="True" 
+                 PlaceholderText="Здесь появится результат..." 
+                 AcceptsReturn="True" 
+                 TextWrapping="Wrap"/>
+    </Grid>
+</UserControl>
