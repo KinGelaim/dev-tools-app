@@ -4,8 +4,8 @@
         xmlns:models="using:DevToolsApp.Models"
         x:Class="DevToolsApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="DevToolsApp"
+        Icon="/Assets/logo.ico"
+        Title="Инструменты разработчика"
         Width="900" Height="600"
         WindowStartupLocation="CenterScreen">
 
@@ -19,7 +19,7 @@
             <Border BorderBrush="#33808080" BorderThickness="0,0,1,0" Background="#11808080">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top"
-                               Text="DevToolsApp"
+                               Text="Инструменты"
                                FontWeight="Bold"
                                FontSize="16"
                                Margin="15,20,15,20"/>
