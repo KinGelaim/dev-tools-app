@@ -1,3 +1,11 @@
 <Solution>
+  <Project Path="DevToolsApp.Android/DevToolsApp.Android.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="DevToolsApp.Browser/DevToolsApp.Browser.csproj" />
+  <Project Path="DevToolsApp.Desktop/DevToolsApp.Desktop.csproj" />
+  <Project Path="DevToolsApp.iOS/DevToolsApp.iOS.csproj">
+    <Deploy />
+  </Project>
   <Project Path="DevToolsApp/DevToolsApp.csproj" />
 </Solution>

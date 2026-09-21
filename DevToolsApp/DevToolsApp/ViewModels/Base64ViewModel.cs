@@ -79,7 +79,7 @@ public partial class Base64ViewModel : ViewModelBase
         if (string.IsNullOrEmpty(OutputText) || OutputText.StartsWith("Ошибка"))
         {
             return;
-        }    
+        }
 
         InputText = OutputText;
     }

@@ -1,0 +1,58 @@
+/* HTML styles for the splash screen */
+.splash {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: white;
+    font-family: 'Outfit', sans-serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    pointer-events: none;
+}
+
+/* Light theme styles */
+@media (prefers-color-scheme: light) {
+    .splash {
+        background: white;
+    }
+
+    .splash h2 {
+        color: #1b2a4e;
+    }
+
+    .splash a {
+        color: #0D6EFD;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .splash {
+        background: #1b2a4e;
+    }
+
+    .splash h2 {
+        color: white;
+    }
+
+    .splash a {
+        color: white;
+    }
+}
+
+.splash h2 {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.splash a {
+    text-decoration: none;
+    font-size: 2.5rem;
+    display: block;   
+}
+
+.splash.splash-close {
+    transition: opacity 200ms, display 200ms;
+    display: none;
+    opacity: 0;
+}

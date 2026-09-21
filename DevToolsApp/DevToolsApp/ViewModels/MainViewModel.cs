@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace DevToolsApp.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainViewModel : ViewModelBase
 {
     [ObservableProperty]
     private ViewModelBase _currentPage;
@@ -14,7 +14,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<NavigationItem> Tools { get; } = [];
 
-    public MainWindowViewModel()
+    public MainViewModel()
     {
         var base64Tool = new NavigationItem("Base64 Converter", new Base64ViewModel());
         Tools.Add(base64Tool);
