@@ -1,8 +1,9 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input.Platform;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,6 +123,13 @@ public partial class Base64ViewModel : ViewModelBase
         {
             return desktop.MainWindow?.Clipboard;
         }
+
+        if (Application.Current?.ApplicationLifetime is ISingleViewApplicationLifetime singleView)
+        {
+            var topLevel = TopLevel.GetTopLevel(singleView.MainView);
+            return topLevel?.Clipboard;
+        }
+
         return null;
     }
 }
