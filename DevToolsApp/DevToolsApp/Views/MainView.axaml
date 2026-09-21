@@ -5,38 +5,56 @@
         x:Class="DevToolsApp.Views.MainView"
         x:DataType="vm:MainViewModel">
 
-    <!-- SplitView делит окно на боковую панель (Pane) и контентную область (Content) -->
-    <SplitView IsPaneOpen="True"
-               DisplayMode="Inline"
-               OpenPaneLength="220">
+    <!-- Добавим сетку: Сверху шапка (Header) с кнопкой-меню, снизу SplitView -->
+    <Grid RowDefinitions="Auto, *">
         
-        <!-- Левая часть: Меню -->
-        <SplitView.Pane>
-            <Border BorderBrush="#33808080" BorderThickness="0,0,1,0" Background="#11808080">
-                <DockPanel>
-                    <TextBlock DockPanel.Dock="Top"
-                               Text="Инструменты"
-                               FontWeight="Bold"
-                               FontSize="16"
-                               Margin="15,20,15,20"/>
-                    
+        <!-- Верхняя мобильная панель (Шапка) -->
+        <Border Grid.Row="0" Background="#2b2d30" Padding="8,4">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <!-- Кнопка вызова меню -->
+                <Button Command="{Binding TogglePaneCommand}" 
+                        Background="Transparent" 
+                        BorderThickness="0"
+                        Padding="8">
+                    <PathIcon Data="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z" 
+                              Width="18" 
+                              Height="18" 
+                              Foreground="White" />
+                </Button>
+                
+                <TextBlock Text="Инструменты" 
+                           VerticalAlignment="Center" 
+                           FontWeight="Bold" 
+                           FontSize="16" 
+                           Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Сам SplitView -->
+        <SplitView Grid.Row="1"
+                   IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay}"
+                   DisplayMode="Overlay"
+                   OpenPaneLength="250">
+            
+            <!-- Левая панель со списком -->
+            <SplitView.Pane>
+                <Border Background="#1e1f22" BorderBrush="#3c3f41" BorderThickness="0,0,1,0">
                     <ListBox ItemsSource="{Binding Tools}"
-                             SelectedItem="{Binding SelectedItem}">
+                             SelectedItem="{Binding SelectedTool, Mode=TwoWay}">
                         <ListBox.ItemTemplate>
-                            <DataTemplate x:DataType="models:NavigationItem">
-                                <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Padding="5,0"/>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" Padding="10, 8" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </DockPanel>
-            </Border>
-        </SplitView.Pane>
+                </Border>
+            </SplitView.Pane>
 
-        <!-- Правая часть: Активный инструмент -->
-        <SplitView.Content>
-            <!-- ContentControl автоматически найдет нужный UserControl благодаря ViewLocator -->
-            <TransitioningContentControl Content="{Binding CurrentPage}" Margin="10"/>
-        </SplitView.Content>
+            <!-- Основной контент (выбранный инструмент) -->
+            <SplitView.Content>
+                <TransitioningContentControl Content="{Binding CurrentPage}" />
+            </SplitView.Content>
 
-    </SplitView>
+        </SplitView>
+    </Grid>
 </UserControl>

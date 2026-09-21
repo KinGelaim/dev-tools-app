@@ -33,7 +33,14 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10" Margin="0,12">
             <Button Content="Кодировать (Encode)" Command="{Binding EncodeToBase64Command}"/>
             <Button Content="Декодировать (Decode)" Command="{Binding DecodeFromBase64Command}"/>
-            <Button Content="⇅ Поменять местами" Command="{Binding SwapCommand}"/>
+            <Button Command="{Binding SwapCommand}">
+                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <PathIcon Data="M9,3L5,7H8V14H10V7H13M16,17V10H14V17H11L15,21L19,17H16Z" 
+                              Width="14" 
+                              Height="14" />
+                    <TextBlock Text="Поменять местами" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
         </StackPanel>
 
         <!-- Панель управления над нижним полем -->

@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using DevToolsApp.Models;
 using System.Collections.ObjectModel;
 
@@ -7,27 +8,35 @@ namespace DevToolsApp.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
     [ObservableProperty]
-    private ViewModelBase _currentPage;
+    private bool _isPaneOpen;
 
     [ObservableProperty]
-    private NavigationItem? _selectedItem;
+    private ViewModelBase? _currentPage;
 
-    public ObservableCollection<NavigationItem> Tools { get; } = [];
+    [ObservableProperty]
+    private NavigationItem? _selectedTool;
+
+    public ObservableCollection<NavigationItem> Tools { get; } = new();
 
     public MainViewModel()
     {
-        var base64Tool = new NavigationItem("Base64 Converter", new Base64ViewModel());
-        Tools.Add(base64Tool);
+        Tools.Add(new NavigationItem("Base64 Converter", new Base64ViewModel()));
 
-        SelectedItem = base64Tool;
-        _currentPage = base64Tool.ViewModel;
+        SelectedTool = Tools[0];
     }
 
-    partial void OnSelectedItemChanged(NavigationItem? value)
+    [RelayCommand]
+    private void TogglePane()
     {
-        if (value != null)
+        IsPaneOpen = !IsPaneOpen;
+    }
+
+    partial void OnSelectedToolChanged(NavigationItem? value)
+    {
+        if (value is not null)
         {
             CurrentPage = value.ViewModel;
+            IsPaneOpen = false;
         }
     }
 }
