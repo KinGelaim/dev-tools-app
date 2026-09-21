@@ -18,13 +18,13 @@
         <SplitView.Pane>
             <Border BorderBrush="#33808080" BorderThickness="0,0,1,0" Background="#11808080">
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" 
-                               Text="DevToolsApp" 
-                               FontWeight="Bold" 
-                               FontSize="16" 
+                    <TextBlock DockPanel.Dock="Top"
+                               Text="DevToolsApp"
+                               FontWeight="Bold"
+                               FontSize="16"
                                Margin="15,20,15,20"/>
                     
-                    <ListBox ItemsSource="{Binding Tools}" 
+                    <ListBox ItemsSource="{Binding Tools}"
                              SelectedItem="{Binding SelectedItem}">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="models:NavigationItem">
