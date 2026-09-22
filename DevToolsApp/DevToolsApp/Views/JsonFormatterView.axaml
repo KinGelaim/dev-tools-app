@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DevToolsApp.ViewModels"
+             x:Class="DevToolsApp.Views.JsonFormatterView"
+             x:DataType="vm:JsonFormatterViewModel">
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto, *" Margin="20">
+        
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0"
+                   Text="JSON Formatter / Validator"
+                   FontSize="22"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,15"/>
+
+        <!-- Панель управления над верхним полем -->
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto" Margin="0,0,0,6">
+            <TextBlock Text="Входной JSON:" FontWeight="Medium" VerticalAlignment="Center"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                <Button Content="Вставить" Command="{Binding PasteInputCommand}"/>
+                <Button Content="Очистить" Command="{Binding ClearCommand}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Входной текст -->
+        <TextBox Grid.Row="2"
+                 Text="{Binding InputText}"
+                 PlaceholderText="Вставьте или введите JSON для форматирования..."
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"/>
+
+        <!-- Панель действий посередине -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10" Margin="0,12">
+            <Button Content="Форматировать" Command="{Binding FormatJsonCommand}"/>
+            <Button Content="Минифицировать" Command="{Binding MinifyJsonCommand}"/>
+        </StackPanel>
+
+        <!-- Панель управления над нижним полем -->
+        <Grid Grid.Row="4" ColumnDefinitions="*, Auto" Margin="0,0,0,6">
+            <TextBlock Text="Результат:" FontWeight="Medium" VerticalAlignment="Center"/>
+            <Button Grid.Column="1"
+                    Content="{Binding CopyButtonText}"
+                    Command="{Binding CopyOutputCommand}"/>
+        </Grid>
+
+        <!-- Результат -->
+        <TextBox Grid.Row="5"
+                 Text="{Binding OutputText}"
+                 IsReadOnly="True"
+                 PlaceholderText="Здесь появится результат..."
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"/>
+    </Grid>
+</UserControl>
