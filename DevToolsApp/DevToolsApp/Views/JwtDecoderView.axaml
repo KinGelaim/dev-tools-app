@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DevToolsApp.ViewModels"
+             x:Class="DevToolsApp.Views.JwtDecoderView"
+             x:DataType="vm:JwtDecoderViewModel">
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto, *" Margin="20">
+        
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0"
+                   Text="JWT Decoder (Payload Only)"
+                   FontSize="22"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,15"/>
+
+        <!-- Панель управления над верхним полем -->
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto" Margin="0,0,0,6">
+            <TextBlock Text="Вставьте JWT токен:" FontWeight="Medium" VerticalAlignment="Center"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"/>
+        </Grid>
+
+        <!-- Входной текст -->
+        <TextBox Grid.Row="2"
+                 Text="{Binding JwtInput}"
+                 PlaceholderText="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"/>
+
+        <!-- Панель действий посередине -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10" Margin="0,12">
+            <Button Content="Декодировать Payload" Command="{Binding DecodePayloadCommand}"/>
+        </StackPanel>
+
+        <!-- Панель управления над нижним полем -->
+        <Grid Grid.Row="4" ColumnDefinitions="*, Auto" Margin="0,0,0,6">
+            <TextBlock Text="Декодированный payload:" FontWeight="Medium" VerticalAlignment="Center"/>
+            <Button Grid.Column="1"
+                    Content="{Binding CopyButtonText}"
+                    Command="{Binding CopyOutputCommand}"/>
+        </Grid>
+
+        <!-- Результат -->
+        <TextBox Grid.Row="5"
+                 Text="{Binding DecodedPayload}"
+                 IsReadOnly="True"
+                 PlaceholderText="Здесь появится декодированный payload..."
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"/>
+    </Grid>
+</UserControl>

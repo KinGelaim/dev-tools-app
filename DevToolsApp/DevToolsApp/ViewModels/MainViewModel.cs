@@ -23,6 +23,7 @@ public partial class MainViewModel : ViewModelBase
         Tools.Add(new NavigationItem("Base64 Converter", new Base64ViewModel()));
         Tools.Add(new NavigationItem("UUID / GUID Generator", new GuidGeneratorViewModel()));
         Tools.Add(new NavigationItem("JSON Formatter / Validator", new JsonFormatterViewModel()));
+        Tools.Add(new NavigationItem("JWT Decoder (Payload)", new JwtDecoderViewModel()));
 
         SelectedTool = Tools[0];
     }
