@@ -1,71 +1,107 @@
-﻿<animated-vector
+<animated-vector
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt">
-    <aapt:attr name="android:drawable">
-        <vector
+
+	<aapt:attr name="android:drawable">
+		<vector
             android:name="vector"
             android:width="128dp"
             android:height="128dp"
             android:viewportWidth="128"
             android:viewportHeight="128">
-            <group
-                android:name="wrapper"
-                android:translateX="21"
-                android:translateY="21">
-                <group android:name="group">
-                    <path
-                        android:name="path"
-                        android:pathData="M 74.853 85.823 L 75.368 85.823 C 80.735 85.823 85.144 81.803 85.761 76.602 L 85.836 41.76 C 85.225 18.593 66.254 0 42.939 0 C 19.24 0 0.028 19.212 0.028 42.912 C 0.028 66.357 18.831 85.418 42.18 85.823 L 74.853 85.823 Z"
-                        android:fillColor="#00ffffff"
-                        android:strokeWidth="1"/>
-                    <path
-                        android:name="path_1"
-                        android:pathData="M 43.059 14.614 C 29.551 14.614 18.256 24.082 15.445 36.743 C 18.136 37.498 20.109 39.968 20.109 42.899 C 20.109 45.831 18.136 48.301 15.445 49.055 C 18.256 61.716 29.551 71.184 43.059 71.184 C 47.975 71.184 52.599 69.93 56.628 67.723 L 56.628 70.993 L 71.344 70.993 L 71.344 44.072 C 71.357 43.714 71.344 43.26 71.344 42.899 C 71.344 27.278 58.68 14.614 43.059 14.614 Z M 29.51 42.899 C 29.51 35.416 35.576 29.35 43.059 29.35 C 50.541 29.35 56.607 35.416 56.607 42.899 C 56.607 50.382 50.541 56.448 43.059 56.448 C 35.576 56.448 29.51 50.382 29.51 42.899 Z"
-                        android:fillColor="#00ffffff"
-                        android:strokeWidth="1"
-                        android:fillType="evenOdd"/>
-                    <path
-                        android:name="path_2"
-                        android:pathData="M 18.105 42.88 C 18.105 45.38 16.078 47.407 13.579 47.407 C 11.079 47.407 9.052 45.38 9.052 42.88 C 9.052 40.381 11.079 38.354 13.579 38.354 C 16.078 38.354 18.105 40.381 18.105 42.88 Z"
-                        android:fillColor="#00ffffff"
-                        android:strokeWidth="1"/>
-                </group>
-            </group>
-        </vector>
-    </aapt:attr>
-    <target android:name="path_2">
-        <aapt:attr name="android:animation">
-            <objectAnimator
-                android:propertyName="fillColor"
-                android:startOffset="100"
-                android:duration="900"
-                android:valueFrom="#00ffffff"
-                android:valueTo="#161c2d"
-                android:valueType="colorType"
-                android:interpolator="@android:interpolator/fast_out_slow_in"/>
-        </aapt:attr>
-    </target>
-    <target android:name="path">
-        <aapt:attr name="android:animation">
-            <objectAnimator
-                android:propertyName="fillColor"
-                android:duration="500"
-                android:valueFrom="#00ffffff"
-                android:valueTo="#f9f9fb"
-                android:valueType="colorType"
-                android:interpolator="@android:interpolator/fast_out_slow_in"/>
-        </aapt:attr>
-    </target>
-    <target android:name="path_1">
-        <aapt:attr name="android:animation">
-            <objectAnimator
-                android:propertyName="fillColor"
-                android:startOffset="100"
-                android:duration="900"
-                android:valueFrom="#00ffffff"
-                android:valueTo="#161c2d"
-                android:valueType="colorType"
-                android:interpolator="@android:interpolator/fast_out_slow_in"/>
-        </aapt:attr>
-    </target>
+
+			<!-- Фоновая скруглённая плитка -->
+			<path
+                android:name="bg"
+                android:pathData="M 42,22 L 86,22 A 20,20 0 0 1 106,42 L 106,86 A 20,20 0 0 1 86,106 L 42,106 A 20,20 0 0 1 22,86 L 22,42 A 20,20 0 0 1 42,22 Z"
+                android:fillColor="#4F46E5"
+                android:fillAlpha="0" />
+
+			<!-- Левая скобка < -->
+			<path
+                android:name="bracket_left"
+                android:pathData="M 49,46 L 37,64 L 49,82"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="5.5"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"
+                android:trimPathEnd="0" />
+
+			<!-- Слэш / -->
+			<path
+                android:name="slash"
+                android:pathData="M 59,82 L 69,46"
+                android:strokeColor="#93C5FD"
+                android:strokeWidth="5.5"
+                android:strokeLineCap="round"
+                android:trimPathEnd="0" />
+
+			<!-- Правая скобка > -->
+			<path
+                android:name="bracket_right"
+                android:pathData="M 79,46 L 91,64 L 79,82"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="5.5"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"
+                android:trimPathEnd="0" />
+
+		</vector>
+	</aapt:attr>
+
+	<!-- Анимация появления фона (0ms - 350ms) -->
+	<target android:name="bg">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+                android:propertyName="fillAlpha"
+                android:duration="350"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+		</aapt:attr>
+	</target>
+
+	<!-- Отрисовка левой скобки < (150ms - 550ms) -->
+	<target android:name="bracket_left">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="150"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+		</aapt:attr>
+	</target>
+
+	<!-- Отрисовка слэша / (300ms - 650ms) -->
+	<target android:name="slash">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="300"
+                android:duration="350"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+		</aapt:attr>
+	</target>
+
+	<!-- Отрисовка правой скобки > (450ms - 850ms) -->
+	<target android:name="bracket_right">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="450"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+		</aapt:attr>
+	</target>
+
 </animated-vector>
