@@ -32,7 +32,11 @@ public partial class JsonFormatterViewModel : ViewModelBase
         try
         {
             var parsed = JsonDocument.Parse(InputText);
-            OutputText = JsonSerializer.Serialize(parsed, new JsonSerializerOptions { WriteIndented = true });
+            OutputText = JsonSerializer.Serialize(parsed, new JsonSerializerOptions 
+            { 
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
         }
         catch (Exception ex)
         {
@@ -52,7 +56,11 @@ public partial class JsonFormatterViewModel : ViewModelBase
         try
         {
             var parsed = JsonDocument.Parse(InputText);
-            OutputText = JsonSerializer.Serialize(parsed, new JsonSerializerOptions { WriteIndented = false });
+            OutputText = JsonSerializer.Serialize(parsed, new JsonSerializerOptions 
+            { 
+                WriteIndented = false,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
         }
         catch (Exception ex)
         {
