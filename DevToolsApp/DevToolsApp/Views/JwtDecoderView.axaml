@@ -16,7 +16,10 @@
         <!-- Панель управления над верхним полем -->
         <Grid Grid.Row="1" ColumnDefinitions="*, Auto" Margin="0,0,0,6">
             <TextBlock Text="Вставьте JWT токен:" FontWeight="Medium" VerticalAlignment="Center"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                <Button Content="Вставить" Command="{Binding PasteInputCommand}"/>
+                <Button Content="Очистить" Command="{Binding ClearCommand}"/>
+            </StackPanel>
         </Grid>
 
         <!-- Входной текст -->

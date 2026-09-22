@@ -70,6 +70,27 @@ public partial class JwtDecoderViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private async Task PasteInputAsync()
+    {
+        var clipboard = GetClipboard();
+        if (clipboard != null)
+        {
+            var text = await clipboard.TryGetTextAsync();
+            if (!string.IsNullOrEmpty(text))
+            {
+                JwtInput = text;
+            }
+        }
+    }
+
+    [RelayCommand]
+    private void Clear()
+    {
+        JwtInput = string.Empty;
+        DecodedPayload = string.Empty;
+    }
+
+    [RelayCommand]
     private async Task CopyOutputAsync()
     {
         if (string.IsNullOrEmpty(DecodedPayload) || DecodedPayload.StartsWith("Ошибка"))
