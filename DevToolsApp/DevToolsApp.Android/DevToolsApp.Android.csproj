@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>DevToolsApp</RootNamespace>
     <OutputType>Exe</OutputType>
@@ -8,8 +8,32 @@
     <ApplicationId>com.CompanyName.DevToolsApp</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-    <AndroidPackageFormat>apk</AndroidPackageFormat>
-    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+	<AndroidPackageFormat>apk</AndroidPackageFormat>
+
+	<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+
+	<AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
+	<AndroidEnableMultiDex>True</AndroidEnableMultiDex>
+    <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
+  </PropertyGroup>
+
+  <!-- Подпись -->
+  <PropertyGroup>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore Condition="'$(AndroidSigningKeyStore)' == ''">dev.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass Condition="'$(AndroidSigningStorePass)' == ''">123456</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias Condition="'$(AndroidSigningKeyAlias)' == ''">dev</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass Condition="'$(AndroidSigningKeyPass)' == ''">123456</AndroidSigningKeyPass>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+	<!-- Архитектура: используем переданную или по умолчанию под всё -->
+	<RuntimeIdentifiers Condition="'$(RuntimeIdentifier)' == ''">android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+
+	<!-- Сжатие и удаление лишнего кода -->
+	<PublishTrimmed>True</PublishTrimmed>
+	<TrimMode>partial</TrimMode>
+	<EnableAssemblyCompression>True</EnableAssemblyCompression>
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,7 +5,11 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  
+
+  <PropertyGroup>
+    <IsTrimmable>false</IsTrimmable>
+  </PropertyGroup>
+
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
